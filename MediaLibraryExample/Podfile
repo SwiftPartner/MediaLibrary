@@ -1,0 +1,19 @@
+platform :ios, '9.0'
+
+target 'MediaLibraryExample' do
+
+  use_frameworks!
+  # Pods for MediaLibraryExample
+  pod 'MediaLibrary', :path => '../'
+
+  target 'MediaLibraryExampleTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'MediaLibraryExampleUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
