@@ -1,20 +1,3 @@
-PODS:
-  - NextLevel (0.12.1)
-  - SCRecorder (2.7.0)
-
-DEPENDENCIES:
-  - NextLevel (~> 0.12.0)
-  - SCRecorder
-
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - NextLevel
-    - SCRecorder
-
-SPEC CHECKSUMS:
-  NextLevel: 10e20ee383eb461c3c250300583f0f234adc194e
-  SCRecorder: bbb521dbc222908876ec9cd9156bbc8a893bed44
-
-PODFILE CHECKSUM: 9d2a3fce667380ba87d01fc19e782a5427643051
+PODFILE CHECKSUM: 0735ec2c8fbeb88e93d603285eb489e8ee0618cb
 
 COCOAPODS: 1.5.3

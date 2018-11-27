@@ -17,6 +17,12 @@
 		9403523521A81A4900B7E593 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9403523321A81A4900B7E593 /* LaunchScreen.storyboard */; };
 		9403524021A81A4900B7E593 /* MediaLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9403523F21A81A4900B7E593 /* MediaLibraryTests.swift */; };
 		9403524B21A81A4900B7E593 /* MediaLibraryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9403524A21A81A4900B7E593 /* MediaLibraryUITests.swift */; };
+		941507A921ABEC480017A149 /* PriviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941507A721ABEC480017A149 /* PriviewCollectionViewCell.swift */; };
+		941507AA21ABEC480017A149 /* PriviewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 941507A821ABEC480017A149 /* PriviewCollectionViewCell.xib */; };
+		9422B08E21AC149800669528 /* VideoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9422B08C21AC149800669528 /* VideoPlayViewController.swift */; };
+		9422B08F21AC149800669528 /* VideoPlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9422B08D21AC149800669528 /* VideoPlayViewController.xib */; };
+		94633EC021AB8E4F00FCBD15 /* PHFetchResultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94633EBF21AB8E4F00FCBD15 /* PHFetchResultHelper.swift */; };
+		94633EC221ABA2A700FCBD15 /* SelectionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94633EC121ABA2A700FCBD15 /* SelectionAction.swift */; };
 		9470231E21A8E9DA00BF8715 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9470231D21A8E9DA00BF8715 /* MediaManager.swift */; };
 		9470232E21A9368600BF8715 /* FetchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9470232D21A9368600BF8715 /* FetchType.swift */; };
 		9470233521A9394300BF8715 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9470233321A9394300BF8715 /* AlbumsViewController.swift */; };
@@ -71,6 +77,12 @@
 		9403524621A81A4900B7E593 /* MediaLibraryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MediaLibraryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9403524A21A81A4900B7E593 /* MediaLibraryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryUITests.swift; sourceTree = "<group>"; };
 		9403524C21A81A4900B7E593 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		941507A721ABEC480017A149 /* PriviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		941507A821ABEC480017A149 /* PriviewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PriviewCollectionViewCell.xib; sourceTree = "<group>"; };
+		9422B08C21AC149800669528 /* VideoPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayViewController.swift; sourceTree = "<group>"; };
+		9422B08D21AC149800669528 /* VideoPlayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoPlayViewController.xib; sourceTree = "<group>"; };
+		94633EBF21AB8E4F00FCBD15 /* PHFetchResultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHFetchResultHelper.swift; sourceTree = "<group>"; };
+		94633EC121ABA2A700FCBD15 /* SelectionAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionAction.swift; sourceTree = "<group>"; };
 		9470231D21A8E9DA00BF8715 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		9470232D21A9368600BF8715 /* FetchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchType.swift; sourceTree = "<group>"; };
 		9470233321A9394300BF8715 /* AlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +226,8 @@
 				9470233C21A9395F00BF8715 /* PreviewViewController.xib */,
 				9470233F21A9396E00BF8715 /* CaptureViewController.swift */,
 				9470234021A9396E00BF8715 /* CaptureViewController.xib */,
+				9422B08C21AC149800669528 /* VideoPlayViewController.swift */,
+				9422B08D21AC149800669528 /* VideoPlayViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -225,6 +239,8 @@
 				9470234D21A9426300BF8715 /* AlbumTableViewCell.xib */,
 				9470235821A968A700BF8715 /* AssetCollectionViewCell.swift */,
 				9470235921A968A700BF8715 /* AssetCollectionViewCell.xib */,
+				941507A721ABEC480017A149 /* PriviewCollectionViewCell.swift */,
+				941507A821ABEC480017A149 /* PriviewCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -247,7 +263,9 @@
 		9470235721A9558800BF8715 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				94633EC121ABA2A700FCBD15 /* SelectionAction.swift */,
 				9470231D21A8E9DA00BF8715 /* MediaManager.swift */,
+				94633EBF21AB8E4F00FCBD15 /* PHFetchResultHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -273,7 +291,6 @@
 				9403522321A81A4800B7E593 /* Sources */,
 				9403522421A81A4800B7E593 /* Frameworks */,
 				9403522521A81A4800B7E593 /* Resources */,
-				ECB5E29AA97C223345DD7749 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -371,10 +388,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9422B08F21AC149800669528 /* VideoPlayViewController.xib in Resources */,
 				9470233E21A9395F00BF8715 /* PreviewViewController.xib in Resources */,
 				9403523521A81A4900B7E593 /* LaunchScreen.storyboard in Resources */,
 				9403523221A81A4900B7E593 /* Assets.xcassets in Resources */,
 				9470234F21A9426300BF8715 /* AlbumTableViewCell.xib in Resources */,
+				941507AA21ABEC480017A149 /* PriviewCollectionViewCell.xib in Resources */,
 				9470235321A9486D00BF8715 /* Localizable.strings in Resources */,
 				9470233A21A9395100BF8715 /* AssetsViewController.xib in Resources */,
 				9470234221A9396E00BF8715 /* CaptureViewController.xib in Resources */,
@@ -467,30 +486,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ECB5E29AA97C223345DD7749 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MediaLibrary/Pods-MediaLibrary-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/NextLevel/NextLevel.framework",
-				"${BUILT_PRODUCTS_DIR}/SCRecorder/SCRecorder.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NextLevel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCRecorder.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MediaLibrary/Pods-MediaLibrary-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -499,14 +494,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				9470234821A93AB000BF8715 /* ImagePickerViewController.swift in Sources */,
+				941507A921ABEC480017A149 /* PriviewCollectionViewCell.swift in Sources */,
+				94633EC021AB8E4F00FCBD15 /* PHFetchResultHelper.swift in Sources */,
 				9403522D21A81A4800B7E593 /* ViewController.swift in Sources */,
 				9470233521A9394300BF8715 /* AlbumsViewController.swift in Sources */,
 				9470231E21A8E9DA00BF8715 /* MediaManager.swift in Sources */,
+				94633EC221ABA2A700FCBD15 /* SelectionAction.swift in Sources */,
 				9470234121A9396E00BF8715 /* CaptureViewController.swift in Sources */,
 				9470234E21A9426300BF8715 /* AlbumTableViewCell.swift in Sources */,
 				9470232E21A9368600BF8715 /* FetchType.swift in Sources */,
 				9403522B21A81A4800B7E593 /* AppDelegate.swift in Sources */,
 				9470233921A9395100BF8715 /* AssetsViewController.swift in Sources */,
+				9422B08E21AC149800669528 /* VideoPlayViewController.swift in Sources */,
 				9470233D21A9395F00BF8715 /* PreviewViewController.swift in Sources */,
 				9470235A21A968A700BF8715 /* AssetCollectionViewCell.swift in Sources */,
 			);

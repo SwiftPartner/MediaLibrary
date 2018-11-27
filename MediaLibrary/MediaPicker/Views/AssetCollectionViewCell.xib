@@ -26,12 +26,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="259" height="220"/>
                             </imageView>
                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22B-kI-ctw" userLabel="Selection Order">
-                                <rect key="frame" x="238" y="195" width="11" height="15"/>
+                                <rect key="frame" x="234" y="195" width="15" height="15"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" image="pic_selected">
+                                <state key="normal" image="pic_unselect">
                                     <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <state key="selected" image="pic_selected"/>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="XoP-3c-sxX" userLabel="Video Mark">
                                 <rect key="frame" x="114.5" y="95" width="30" height="30"/>
@@ -69,6 +70,7 @@
     </objects>
     <resources>
         <image name="pic_selected" width="11.5" height="11"/>
+        <image name="pic_unselect" width="15" height="15"/>
         <image name="play" width="30" height="30"/>
     </resources>
 </document>

@@ -9,10 +9,11 @@
 import UIKit
 import Photos
 
-class AlbumsViewController: UIViewController {
+public class AlbumsViewController: UIViewController {
     
     private let albumCellID = "albumCellID"
     
+    public typealias WillPushAssetsViewController = (AssetsViewController) -> Void
     @IBOutlet weak var albumsTableView: UITableView!
     
     lazy var mediaManager = MediaManager()
@@ -22,10 +23,22 @@ class AlbumsViewController: UIViewController {
     lazy var userCollections = mediaManager.fetchUserCollection(predicate: nil)
     lazy var thumbnailImageSize = CGSize(width: 80, height: 80)
     
-    override func viewDidLoad() {
+    public var callback: WillPushAssetsViewController?
+    public var cancelCallback: (() -> Void)?
+    
+    override public func viewDidLoad() {
         super.viewDidLoad()
         title = "相册"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelSelection))
         setupTableView()
+        fetchData()
+    }
+    
+    @objc private func cancelSelection() {
+        cancelCallback?()
+    }
+    
+    private func fetchData() {
         if allPhotos.count > 0 {
             imageManager.startCachingImages(for: [allPhotos.object(at: 0)], targetSize: CGSize(width: 80, height: 80), contentMode: .aspectFill, options: nil)
         }
@@ -33,7 +46,6 @@ class AlbumsViewController: UIViewController {
         for i in 0 ..< smartAlbums.count {
             let collection = smartAlbums.object(at: i)
             let result = PHAsset.fetchAssets(in: collection, options: nil)
-            collection.assetCollectionSubtype
             collection.assetsCount = result.count
             if result.count > 0 {
                 let asset = result[0]
@@ -59,12 +71,12 @@ class AlbumsViewController: UIViewController {
         albumsTableView.register(UINib(nibName: "AlbumTableViewCell", bundle: nil), forCellReuseIdentifier: albumCellID)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("\(#function)")
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         isAuthorized()
         print("\(#function)")
@@ -95,11 +107,11 @@ extension AlbumsViewController {
 // MARK: UITableDataSource & UITableViewDelegate
 extension AlbumsViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1 + smartAlbums.count + userCollections.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let albumCell = tableView.dequeueReusableCell(withIdentifier: albumCellID) as! AlbumTableViewCell
         var asset: PHAsset?
         switch indexPath.row {
@@ -114,13 +126,13 @@ extension AlbumsViewController: UITableViewDataSource, UITableViewDelegate {
             albumCell.nameLabel.text = album.localizedTitle
             albumCell.assetsCountLabel.text =  "(\(album.assetsCount))"
             asset = album.lastRecentAddedAsset
-            print("Smart Album: \(album.localizedTitle)")
+            print("Smart Album: \(album.localizedTitle ?? "")")
         default:
             let collection = userCollections[indexPath.row - 1 - smartAlbums.count]
             albumCell.nameLabel.text = collection.localizedTitle
             albumCell.assetsCountLabel.text = "(\(collection.assetsCount))"
             asset = collection.lastRecentAddedAsset
-            print("UserCollection: \(collection.localizedTitle)")
+            print("UserCollection: \(collection.localizedTitle ?? "")")
         }
         guard let notNilAsset = asset else {
             albumCell.coverImageView.image = nil
@@ -135,7 +147,7 @@ extension AlbumsViewController: UITableViewDataSource, UITableViewDelegate {
         return albumCell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row >= 1 && indexPath.row < 1 + smartAlbums.count {
              let album = smartAlbums[indexPath.row - 1]
             if album.localizedTitle == "所有照片" {
@@ -145,4 +157,23 @@ extension AlbumsViewController: UITableViewDataSource, UITableViewDelegate {
         return 50
     }
     
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let assetsViewController = AssetsViewController()
+        switch indexPath.row {
+        case 0:
+           assetsViewController.fetchResult = nil
+           assetsViewController.title = "所有照片"
+        case 1 ..< 1 + smartAlbums.count:
+            let album = smartAlbums[indexPath.row - 1]
+            assetsViewController.fetchResult = PHAsset.fetchAssets(in: album, options: nil)
+            assetsViewController.title = album.localizedTitle
+        default:
+            let collection = userCollections[indexPath.row - 1 - smartAlbums.count]
+            assetsViewController.title = collection.localizedTitle
+            assetsViewController.fetchResult = PHAsset.fetchAssets(in: collection as! PHAssetCollection, options: nil)
+        }
+        callback?(assetsViewController)
+        navigationController?.pushViewController(assetsViewController, animated: true)
+    }
 }

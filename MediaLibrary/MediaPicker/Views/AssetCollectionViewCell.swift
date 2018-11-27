@@ -13,6 +13,8 @@ public class AssetCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var assetImageView: UIImageView!
     @IBOutlet weak var selectionMarkView: UIButton!
     @IBOutlet weak var videoMarkView: UIImageView!
+    
+    var representedAssetIdentifier: String?
 
     var isVideo: Bool = false {
         didSet {

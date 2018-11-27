@@ -8,29 +8,30 @@
 
 import Foundation
 import Photos
+//import SwiftHash
+//import SDWebImage
 
-
-class MediaManager: NSObject, PHPhotoLibraryChangeObserver {
+public class MediaManager: NSObject, PHPhotoLibraryChangeObserver {
     
     static var `default` = MediaManager()
     
-    func photoLibraryDidChange(_ changeInstance: PHChange) {
+    public func photoLibraryDidChange(_ changeInstance: PHChange) {
     }
     
-    func fetchAssets(predicate: NSPredicate?) -> PHFetchResult<PHAsset> {
+    public func fetchAssets(predicate: NSPredicate?) -> PHFetchResult<PHAsset> {
         let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
         options.predicate = predicate
         return PHAsset.fetchAssets(with: options)
     }
     
-    func fetchSmartAlbum(predicate: NSPredicate?) -> PHFetchResult<PHAssetCollection> {
+    public func fetchSmartAlbum(predicate: NSPredicate?) -> PHFetchResult<PHAssetCollection> {
         let options = PHFetchOptions()
         options.predicate = predicate
         return PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .albumRegular, options: options)
     }
     
-    func fetchUserCollection(predicate: NSPredicate?) -> PHFetchResult<PHCollection> {
+    public func fetchUserCollection(predicate: NSPredicate?) -> PHFetchResult<PHCollection> {
         let options = PHFetchOptions()
         options.predicate = predicate
         return PHCollectionList.fetchTopLevelUserCollections(with: options)
@@ -56,7 +57,7 @@ class MediaManager: NSObject, PHPhotoLibraryChangeObserver {
         }
     }
     
-    func fetchCollections() {
+    public func fetchCollections() {
         PHPhotoLibrary.shared().register(self)
     }
     
@@ -66,12 +67,15 @@ class MediaManager: NSObject, PHPhotoLibraryChangeObserver {
     
 }
 
-struct AssociateKeys {
+public struct AssociateKeys {
     static var kAssetsCountInCollection = "assets_count"
     static var kLastRecentAddedAsset = "last_added_asset"
+    static var kIsAssetSelected = "is_asset_selected"
+    static var kAssetSelectionOrder = "asset_selection_order"
+    static var kCacheURL = "cache_url"
 }
 
-extension PHCollection {
+public extension PHCollection {
     var assetsCount: Int {
         set {
             objc_setAssociatedObject(self, &AssociateKeys.kAssetsCountInCollection, newValue, .OBJC_ASSOCIATION_ASSIGN)
@@ -90,3 +94,49 @@ extension PHCollection {
         }
     }
 }
+
+public extension PHAsset {
+    public var isVideo: Bool {
+        return mediaType == .video
+    }
+}
+
+// MARK: 与AssetsViewController相关的属性
+public extension PHAsset {
+    public var isSelected: Bool {
+        set {
+            objc_setAssociatedObject(self, &AssociateKeys.kIsAssetSelected, newValue, .OBJC_ASSOCIATION_ASSIGN)
+        }
+        get {
+            return objc_getAssociatedObject(self, &AssociateKeys.kIsAssetSelected) as? Bool ?? false
+        }
+    }
+    
+    public var selectionOrder: Int {
+        set {
+            objc_setAssociatedObject(self, &AssociateKeys.kAssetSelectionOrder, newValue, .OBJC_ASSOCIATION_ASSIGN)
+        }
+        get {
+            return objc_getAssociatedObject(self, &AssociateKeys.kAssetSelectionOrder) as? Int ?? 1
+        }
+    }
+}
+
+// MARK: 与PreviewViewController相关的属性
+//public extension PHAsset {
+//    public var cacheURL: URL? {
+//        let fileName = MD5(localIdentifier)
+//        var imageFileURL = URL(string: NSTemporaryDirectory())
+//        imageFileURL?.appendPathComponent(fileName)
+//        return imageFileURL
+//    }
+//    
+//    public var cacheKey: String? {
+//        return SDWebImageManager.shared().cacheKey(for: cacheURL)
+//    }
+//}
+
+public protocol ConvertableFetchResult {
+    func allObjects<T: AnyObject>() -> [T]
+}
+
