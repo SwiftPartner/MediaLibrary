@@ -14,8 +14,7 @@ open class AssetsViewController: UIViewController {
     private let kAssetCellID = "asset_cell_id"
     weak var previewButton: UIBarButtonItem!
     weak var doneButton: UIBarButtonItem!
-    var firstShow = true
-    
+    var firstShow = true    
     public struct Configuration {
         var numberOfCollums = 4
         var rowsMargin = CGFloat(5)
@@ -31,13 +30,13 @@ open class AssetsViewController: UIViewController {
     private lazy var imageManager = PHCachingImageManager()
     public var fetchResult: PHFetchResult<PHAsset>!
     public var selectAssetCallback: ImagePickerViewController.AssetsSelectionCallback?
-    private lazy var selectedAssets = [PHAsset]()
+    public lazy var selectedAssets = [PHAsset]()
     
     open override func viewDidLoad() {
         super.viewDidLoad()
         //        title = "照片"
         setupCollectionView()
-//
+        
         if fetchResult == nil {
             fetchResult = mediaManager.fetchAssets(predicate: nil)
             let assets = PHFetchResultHelper.makeObjectsInArray(fetchResult: fetchResult)
@@ -149,6 +148,14 @@ extension AssetsViewController: UICollectionViewDataSource, UICollectionViewDele
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kAssetCellID, for: indexPath) as! AssetCollectionViewCell
         let asset = fetchResult![indexPath.item]
+        if selectedAssets.contains(asset) {
+            let index = selectedAssets.firstIndex(of: asset)
+            let selectedAsset = selectedAssets[index!]
+            asset.selectionOrder = selectedAsset.selectionOrder
+            asset.isSelected = selectedAsset.isSelected
+        } else {
+            asset.isSelected = false
+        }
         cell.isVideo = asset.mediaType == .video
         cell.selectedOrder = "\(asset.selectionOrder + 1)"
         cell.isImageSelected = asset.isSelected

@@ -1,5 +1,5 @@
 PODS:
-  - MediaLibrary (0.0.1)
+  - MediaLibrary (0.0.2)
 
 DEPENDENCIES:
   - MediaLibrary (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MediaLibrary: dbdc0fda15453f8b9bdb14e7de85076ab60655d4
+  MediaLibrary: 9fefa0bfda10b7c1252f9b449b4f19cfcaf27e87
 
 PODFILE CHECKSUM: 3dbf0dcb93e3f2342a266af362da2496b5216270
 

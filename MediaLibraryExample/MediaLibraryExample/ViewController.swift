@@ -8,10 +8,12 @@
 
 import UIKit
 import MediaLibrary
+import Photos
 
 class ViewController: UIViewController {
 
     private var isFirstShow = true
+    var selectedAssets: [PHAsset]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,12 @@ class ViewController: UIViewController {
     
     private func showImagePicker() {
         let imagePickerController = ImagePickerViewController()
+//        if let assets = selectedAssets {
+//            ImagePickerViewController.configuration.firstVisibleScene = .preview(assets: assets)
+//        } else {
+//            ImagePickerViewController.configuration = ImagePickerViewController.Configuration.default
+//        }
+        imagePickerController.selectedAssets = selectedAssets
         imagePickerController.selectAssetCallback = { [weak self] action in
             guard let strongSelf = self else {
                 return nil
@@ -34,6 +42,7 @@ class ViewController: UIViewController {
             print("\(strongSelf) \(#function) \(#line)")
             switch action {
             case .done(let selectedAssets):
+                strongSelf.selectedAssets = selectedAssets
                 print("\(strongSelf) \(#function) \(#line) 供选择了\(selectedAssets.count)张")
                 fallthrough
             case .cancel:

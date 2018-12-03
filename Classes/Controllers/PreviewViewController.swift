@@ -24,7 +24,7 @@ public class PreviewViewController: UIViewController {
     weak var presentationRightbutton: UIButton?
     
     var selectedPage = 0
-    var selectedAssets = [PHAsset]()
+    public var selectedAssets = [PHAsset]()
     private var currentAsset: PHAsset! {
         didSet {
             let isSelected = currentAsset.isSelected
@@ -230,11 +230,11 @@ extension PreviewViewController : UICollectionViewDataSource, UICollectionViewDe
             page = Int(roundf(Float(xPosition / scrollView.bounds.size.width)))
         }
         selectedPage = page
-        print("第\(page)页")
+//        print("第\(page)页")
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        print("\(self) \(#function)")
+//        print("\(self) \(#function)")
         currentAsset = selectedAssets[selectedPage]
     }
     

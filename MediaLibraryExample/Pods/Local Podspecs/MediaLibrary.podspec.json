@@ -1,6 +1,6 @@
 {
   "name": "MediaLibrary",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "summary": "图片、视频选择器",
   "description": "查看了Apple官方Demo后，高仿微信的图片、视频选择器",
   "homepage": "https://github.com/SwiftPartner",
@@ -18,7 +18,7 @@
   "swift_version": "4.2",
   "source": {
     "git": "https://github.com/SwiftPartner/MediaLibrary.git",
-    "tag": "0.0.1"
+    "tag": "0.0.2"
   },
   "source_files": "Classes/**/*.{h,m,swift}",
   "exclude_files": "Classes/Exclude",
