@@ -34,22 +34,26 @@ open class AssetsViewController: UIViewController {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        //        title = "照片"
-        setupCollectionView()
-        
-        if fetchResult == nil {
-            fetchResult = mediaManager.fetchAssets(predicate: nil)
-            let assets = PHFetchResultHelper.makeObjectsInArray(fetchResult: fetchResult)
-            imageManager.startCachingImages(for: assets, targetSize: CGSize(width: 120, height: 120), contentMode: .aspectFill, options: nil)
-        }
-        
         let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancel))
         navigationItem.rightBarButtonItem = cancelButton
+        setupCollectionView()
+        fetchData()
     }
     
-    open override func awakeFromNib() {
-        super.awakeFromNib()
+    private func setupCollectionView() {
+        let bundle = Bundle(for: AssetsViewController.self)
+        assetCollectionView.register(UINib(nibName: "AssetCollectionViewCell", bundle: bundle), forCellWithReuseIdentifier: kAssetCellID)
+        let configuration = AssetsViewController.configuration
+        assetCollectionView.contentInset = configuration.contentInset
         
+        let allMargins = configuration.contentInset.left + configuration.contentInset.right
+            + CGFloat(configuration.numberOfCollums - 1) * configuration.collumnMargin
+        let itemHeight = (UIScreen.main.bounds.size.width - allMargins) / CGFloat(configuration.numberOfCollums)
+        
+        flowLayout.itemSize = CGSize(width: itemHeight, height: itemHeight)
+        flowLayout.minimumLineSpacing = configuration.rowsMargin
+        flowLayout.minimumInteritemSpacing = configuration.collumnMargin
+        assetCollectionView.reloadData()
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -66,31 +70,37 @@ open class AssetsViewController: UIViewController {
         navigationController?.setToolbarHidden(false, animated: false)
         self.previewButton = previewButton
         self.doneButton = doneButton
-        
         resetSelectionOrder()
         reloadData()
     }
+
+    // MARK: 拉取数据
+    func fetchData() {
+        if fetchResult == nil, PHPhotoLibrary.authorizationStatus() == .authorized {
+            fetchResult = mediaManager.fetchAssets(predicate: nil)
+            let assets = PHFetchResultHelper.makeObjectsInArray(fetchResult: fetchResult)
+            imageManager.startCachingImages(for: assets, targetSize: CGSize(width: 120, height: 120), contentMode: .aspectFill, options: nil)
+        }
+    }
     
-    private func setupCollectionView() {
-        
-        let bundle = Bundle(for: AssetsViewController.self)
-        assetCollectionView.register(UINib(nibName: "AssetCollectionViewCell", bundle: bundle), forCellWithReuseIdentifier: kAssetCellID)
-        let configuration = AssetsViewController.configuration
-        assetCollectionView.contentInset = configuration.contentInset
-        
-        let allMargins = configuration.contentInset.left + configuration.contentInset.right
-            + CGFloat(configuration.numberOfCollums - 1) * configuration.collumnMargin
-        let itemHeight = (UIScreen.main.bounds.size.width - allMargins) / CGFloat(configuration.numberOfCollums)
-        
-        flowLayout.itemSize = CGSize(width: itemHeight, height: itemHeight)
-        flowLayout.minimumLineSpacing = configuration.rowsMargin
-        flowLayout.minimumInteritemSpacing = configuration.collumnMargin
-        assetCollectionView.reloadData()
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !AuthorizationHelper.isAuthorized {
+            AuthorizationHelper.shared.requestAuthorization { [weak self] isAuthorized in
+                if isAuthorized {
+                    self?.fetchData()
+                    return
+                }
+                if let self = self {
+                    AuthorizationHelper.shared.showSettings(controller: self)
+                }
+            }
+        }
     }
     
     // MARK: 预览
     @objc private func preview(_ sender: Any) {
-        //        print("预览")
+        print("预览")
         let bundle = Bundle(for: AssetsViewController.self)
         let previewController = PreviewViewController(nibName: "PreviewViewController", bundle: bundle)
         previewController.selectAssetCallback = { [weak self] _ in
@@ -117,7 +127,9 @@ open class AssetsViewController: UIViewController {
     }
     
     deinit {
-        imageManager.stopCachingImagesForAllAssets()
+        if PHPhotoLibrary.authorizationStatus() == .authorized {
+            imageManager.stopCachingImagesForAllAssets()
+        }
         print("我被关闭了，哈哈哈")
     }
     

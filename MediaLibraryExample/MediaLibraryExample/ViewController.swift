@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MediaLibrary
 import Photos
 
 class ViewController: UIViewController {
@@ -29,11 +28,6 @@ class ViewController: UIViewController {
     
     private func showImagePicker() {
         let imagePickerController = ImagePickerViewController()
-//        if let assets = selectedAssets {
-//            ImagePickerViewController.configuration.firstVisibleScene = .preview(assets: assets)
-//        } else {
-//            ImagePickerViewController.configuration = ImagePickerViewController.Configuration.default
-//        }
         imagePickerController.selectedAssets = selectedAssets
         imagePickerController.selectAssetCallback = { [weak self] action in
             guard let strongSelf = self else {

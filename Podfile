@@ -5,6 +5,7 @@ target 'MediaLibrary' do
   use_frameworks!
 
   # Pods for MediaLibrary
+pod 'MediaLibrary', :path => './'
 #  pod "NextLevel", "~> 0.12.0"
 #  pod 'SDWebImage', '~> 4.0'
 #  pod 'SwiftHash'

@@ -15,8 +15,6 @@
 		9403523021A81A4800B7E593 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9403522E21A81A4800B7E593 /* Main.storyboard */; };
 		9403523221A81A4900B7E593 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9403523121A81A4900B7E593 /* Assets.xcassets */; };
 		9403523521A81A4900B7E593 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9403523321A81A4900B7E593 /* LaunchScreen.storyboard */; };
-		9403524021A81A4900B7E593 /* MediaLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9403523F21A81A4900B7E593 /* MediaLibraryTests.swift */; };
-		9403524B21A81A4900B7E593 /* MediaLibraryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9403524A21A81A4900B7E593 /* MediaLibraryUITests.swift */; };
 		941507A921ABEC480017A149 /* PriviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941507A721ABEC480017A149 /* PriviewCollectionViewCell.swift */; };
 		941507AA21ABEC480017A149 /* PriviewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 941507A821ABEC480017A149 /* PriviewCollectionViewCell.xib */; };
 		9422B08E21AC149800669528 /* VideoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9422B08C21AC149800669528 /* VideoPlayViewController.swift */; };
@@ -72,11 +70,7 @@
 		9403523421A81A4900B7E593 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9403523621A81A4900B7E593 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9403523B21A81A4900B7E593 /* MediaLibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MediaLibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9403523F21A81A4900B7E593 /* MediaLibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryTests.swift; sourceTree = "<group>"; };
-		9403524121A81A4900B7E593 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9403524621A81A4900B7E593 /* MediaLibraryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MediaLibraryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9403524A21A81A4900B7E593 /* MediaLibraryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryUITests.swift; sourceTree = "<group>"; };
-		9403524C21A81A4900B7E593 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		941507A721ABEC480017A149 /* PriviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		941507A821ABEC480017A149 /* PriviewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PriviewCollectionViewCell.xib; sourceTree = "<group>"; };
 		9422B08C21AC149800669528 /* VideoPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayViewController.swift; sourceTree = "<group>"; };
@@ -151,8 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				9403522921A81A4800B7E593 /* MediaLibrary */,
-				9403523E21A81A4900B7E593 /* MediaLibraryTests */,
-				9403524921A81A4900B7E593 /* MediaLibraryUITests */,
 				9403522821A81A4800B7E593 /* Products */,
 				1B62F61BACFAEF301388805D /* Pods */,
 				B8F794D120A26658BF4CB20A /* Frameworks */,
@@ -182,24 +174,6 @@
 				9403523621A81A4900B7E593 /* Info.plist */,
 			);
 			path = MediaLibrary;
-			sourceTree = "<group>";
-		};
-		9403523E21A81A4900B7E593 /* MediaLibraryTests */ = {
-			isa = PBXGroup;
-			children = (
-				9403523F21A81A4900B7E593 /* MediaLibraryTests.swift */,
-				9403524121A81A4900B7E593 /* Info.plist */,
-			);
-			path = MediaLibraryTests;
-			sourceTree = "<group>";
-		};
-		9403524921A81A4900B7E593 /* MediaLibraryUITests */ = {
-			isa = PBXGroup;
-			children = (
-				9403524A21A81A4900B7E593 /* MediaLibraryUITests.swift */,
-				9403524C21A81A4900B7E593 /* Info.plist */,
-			);
-			path = MediaLibraryUITests;
 			sourceTree = "<group>";
 		};
 		9470231C21A8E9C700BF8715 /* MediaPicker */ = {
@@ -291,6 +265,7 @@
 				9403522321A81A4800B7E593 /* Sources */,
 				9403522421A81A4800B7E593 /* Frameworks */,
 				9403522521A81A4800B7E593 /* Resources */,
+				64980F04544C496E37F47E32 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -464,6 +439,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		64980F04544C496E37F47E32 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MediaLibrary/Pods-MediaLibrary-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MediaLibrary/MediaLibrary.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MediaLibrary.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MediaLibrary/Pods-MediaLibrary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9C213C514B13F8923392F155 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -515,7 +512,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9403524021A81A4900B7E593 /* MediaLibraryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,7 +519,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9403524B21A81A4900B7E593 /* MediaLibraryUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,13 +25,13 @@ public class AlbumsViewController: UIViewController {
     
     public var callback: WillPushAssetsViewController?
     public var cancelCallback: (() -> Void)?
+    private var requestPermissionDialog: UIAlertController?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         title = "相册"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelSelection))
         setupTableView()
-        fetchData()
     }
     
     @objc private func cancelSelection() {
@@ -39,6 +39,9 @@ public class AlbumsViewController: UIViewController {
     }
     
     private func fetchData() {
+        if PHPhotoLibrary.authorizationStatus() != .authorized {
+            return
+        }
         if allPhotos.count > 0 {
             imageManager.startCachingImages(for: [allPhotos.object(at: 0)], targetSize: CGSize(width: 80, height: 80), contentMode: .aspectFill, options: nil)
         }
@@ -72,36 +75,21 @@ public class AlbumsViewController: UIViewController {
         albumsTableView.register(UINib(nibName: "AlbumTableViewCell", bundle: bundle), forCellReuseIdentifier: albumCellID)
     }
     
-    override public func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print("\(#function)")
-    }
-    
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        isAuthorized()
-        print("\(#function)")
-    }
-}
-
-// MARK: 访问相册权限受理
-extension AlbumsViewController {
-    private func isAuthorized() {
-        MediaManager.isAuthorized { [weak self] authorized in
-            if authorized {
-                self?.albumsTableView.reloadData()
-                return
+        if AuthorizationHelper.isAuthorized {
+            fetchData()
+        } else {
+            AuthorizationHelper.shared.requestAuthorization { [weak self] isAuthorized in
+                if isAuthorized {
+                    self?.fetchData()
+                    return
+                }
+                if let self = self {
+                    AuthorizationHelper.shared.showSettings(controller: self)
+                }
             }
-            self?.showRequestAuthorizationDialog()
         }
-    }
-    
-    private func showRequestAuthorizationDialog() {
-        let appName = Bundle.main.infoDictionary?["CFBundleName"] as! String
-        let alertController = UIAlertController(title: "无法访问相册", message: "\(appName)无权访问您的相册,请打开系统设置页面，按照如下步骤操作【隐私 - 照片 - \(appName) - 读取和写入】以授权", preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "授权", style: .default, handler: nil)
-        alertController.addAction(confirmAction)
-        present(alertController, animated: true, completion: nil)
     }
 }
 

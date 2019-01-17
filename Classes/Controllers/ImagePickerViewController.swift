@@ -36,6 +36,7 @@ open class ImagePickerViewController: UINavigationController {
         case assets
         case preview(assets: [PHAsset])
     }
+
     
     public struct Configuration {
         public var firstVisibleScene: FirstVisibleScene = .assets
@@ -52,6 +53,7 @@ open class ImagePickerViewController: UINavigationController {
     
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
     }
     
     @objc private func done() {
@@ -60,8 +62,10 @@ open class ImagePickerViewController: UINavigationController {
     
     // MARK: 配置子控制器，因为这里可能首先进入的是相册，也可能直接选择图片
     private func configChildControllers() {
+//        if PHPhotoLibrary.authorizationStatus() != .authorized {
+//            fatalError("请先获取到相册权限后再调用")
+//        }
         let bundle = Bundle(for: AssetsViewController.self)
-        
         let config = ImagePickerViewController.configuration
         let albumsController = AlbumsViewController(nibName: "AlbumsViewController", bundle: bundle)
         albumsController.cancelCallback = { [weak self] in
