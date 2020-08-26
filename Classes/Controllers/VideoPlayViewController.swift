@@ -7,10 +7,10 @@
 //
 
 import UIKit
+ 
+public class VideoPlayViewController: UIViewController {
 
-class VideoPlayViewController: UIViewController {
-
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
     }
 }

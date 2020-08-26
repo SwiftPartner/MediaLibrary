@@ -10,7 +10,7 @@ import UIKit
 import Photos
 //import SDWebImage
 
-class PriviewCollectionViewCell: UICollectionViewCell {
+public class PriviewCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var pictureView: UIImageView!
     @IBOutlet weak var videoMarkView: UIImageView!

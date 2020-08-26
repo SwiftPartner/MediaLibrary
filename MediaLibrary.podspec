@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     
     s.name         = "MediaLibrary"
-    s.version      = "0.0.4"
+    s.version      = "0.0.5"
     s.summary      = "图片、视频选择器"
     
     s.description  = <<-DESC
