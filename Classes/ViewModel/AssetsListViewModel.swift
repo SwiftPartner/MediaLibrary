@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AssetsListViewModel {
+public class AssetsListViewModel {
     
     func fetchAllAssets() {
         

@@ -8,12 +8,13 @@
 
 import UIKit
 import Photos
+import MediaLibrary
 
 class ViewController: UIViewController {
 
     private var isFirstShow = true
     var selectedAssets: [PHAsset]?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }

@@ -8,10 +8,10 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
     @IBInspectable var spCornerRadius: CGFloat {
         set {
-            makeCorners(cornerRadius: spCornerRadius)
+            makeCorners(cornerRadius: newValue)
         }
         get {
             return layer.cornerRadius

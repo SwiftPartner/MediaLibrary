@@ -5,7 +5,7 @@
 //  Created by Ryan on 2019/1/17.
 //
 
-import Foundation
+import UIKit
 import Photos
 
 public class AuthorizationHelper {

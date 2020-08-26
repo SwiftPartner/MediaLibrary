@@ -96,14 +96,14 @@ public extension PHCollection {
 }
 
 public extension PHAsset {
-    public var isVideo: Bool {
+    var isVideo: Bool {
         return mediaType == .video
     }
 }
 
 // MARK: 与AssetsViewController相关的属性
 public extension PHAsset {
-    public var isSelected: Bool {
+    var isSelected: Bool {
         set {
             objc_setAssociatedObject(self, &AssociateKeys.kIsAssetSelected, newValue, .OBJC_ASSOCIATION_ASSIGN)
         }
@@ -112,7 +112,7 @@ public extension PHAsset {
         }
     }
     
-    public var selectionOrder: Int {
+    var selectionOrder: Int {
         set {
             objc_setAssociatedObject(self, &AssociateKeys.kAssetSelectionOrder, newValue, .OBJC_ASSOCIATION_ASSIGN)
         }

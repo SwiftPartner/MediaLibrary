@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum FetchType {
+public enum FetchType {
     case fetchSmartAlbum
     case fetchCollections
     case image

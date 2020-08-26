@@ -445,20 +445,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MediaLibrary/Pods-MediaLibrary-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MediaLibrary/MediaLibrary.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-MediaLibrary/Pods-MediaLibrary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MediaLibrary.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-MediaLibrary/Pods-MediaLibrary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MediaLibrary/Pods-MediaLibrary-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MediaLibrary/Pods-MediaLibrary-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9C213C514B13F8923392F155 /* [CP] Check Pods Manifest.lock */ = {

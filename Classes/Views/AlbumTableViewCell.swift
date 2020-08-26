@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlbumTableViewCell: UITableViewCell {
+public class AlbumTableViewCell: UITableViewCell {
 
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -16,11 +16,11 @@ class AlbumTableViewCell: UITableViewCell {
     
     var representedAssetIdentifier: String?
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    public override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     

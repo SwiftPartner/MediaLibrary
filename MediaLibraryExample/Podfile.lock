@@ -1,3 +1,16 @@
-PODFILE CHECKSUM: 159610c5bd7a92c3533457a25b78289acd4fd68e
+PODS:
+  - MediaLibrary (0.0.3)
 
-COCOAPODS: 1.5.3
+DEPENDENCIES:
+  - MediaLibrary (from `../`)
+
+EXTERNAL SOURCES:
+  MediaLibrary:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MediaLibrary: 3e3f388cebfdbca707a09e81fcf27010513ca05d
+
+PODFILE CHECKSUM: 3dbf0dcb93e3f2342a266af362da2496b5216270
+
+COCOAPODS: 1.9.3
